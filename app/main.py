@@ -20,20 +20,15 @@ app = FastAPI(title="Grant Application Extractor API")
 
 # 2. 定义允许的源
 origins = [
-    "https://grant-extractor-frontend.onrender.com",
-    "http://localhost:*", # 如果你用特定端口本地测试
-    # 在部署后，你可能需要添加你的网站域名
-    # "https://your-app-name.web.app",
-    "*" # 最简单的方式，允许所有源
+    "https://grant-extractor-frontend.onrender.com"
 ]
 
-# 3. 把 CORS 中间件添加到你的 app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins, # 允许哪些源访问
-    allow_credentials=True,
-    allow_methods=["*"], # 允许所有方法 (GET, POST, etc.)
-    allow_headers=["*"], # 允许所有请求头
+    allow_origins=origins,      # 只能写具体域名
+    allow_credentials=True,     # 登录/上传时需要 cookie
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # 将 api_routes 中定义的所有路由包含到主应用中
