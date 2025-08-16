@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app/main.py",   // 你的 FastAPI 入口文件路径
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"  // 强制指定 Python 版本
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app/main.py"    // 所有请求路由到 FastAPI
+    }
+  ]
+}
