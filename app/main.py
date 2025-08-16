@@ -20,8 +20,8 @@ app = FastAPI(title="Grant Application Extractor API")
 
 # 2. 定义允许的源
 origins = [
-    "http://localhost",
-    "http://localhost:8080", # 如果你用特定端口本地测试
+    "https://grant-extractor-frontend.onrender.com",
+    "http://localhost:*", # 如果你用特定端口本地测试
     # 在部署后，你可能需要添加你的网站域名
     # "https://your-app-name.web.app",
     "*" # 最简单的方式，允许所有源
@@ -30,18 +30,16 @@ origins = [
 # 3. 把 CORS 中间件添加到你的 app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://grant-extractor-frontend.onrender.com",
-        "http://localhost:8000"  # 本地测试用
-    ],
+    allow_origins=origins,
     allow_credentials=True,  # 必须显式声明
     allow_methods=["GET", "POST", "OPTIONS"],  # 不要用 "*"
     allow_headers=[
         "Authorization",
         "Content-Type",
-        "Origin"
+        "Origin",
+        "Accept"
     ],
-    expose_headers=["X-Custom-Header"],  # 前端需要读取的头部
+    expose_headers=["*"],  # 前端需要读取的头部
     max_age=600  # 预检请求缓存时间（Safari 需要较长）
 )
 
