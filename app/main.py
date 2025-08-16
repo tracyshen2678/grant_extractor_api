@@ -30,10 +30,19 @@ origins = [
 # 3. 把 CORS 中间件添加到你的 app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins, # 允许哪些源访问
-    allow_credentials=True,
-    allow_methods=["*"], # 允许所有方法 (GET, POST, etc.)
-    allow_headers=["*"], # 允许所有请求头
+    allow_origins=[
+        "https://grant-extractor-frontend.onrender.com",
+        "http://localhost:8000"  # 本地测试用
+    ],
+    allow_credentials=True,  # 必须显式声明
+    allow_methods=["GET", "POST", "OPTIONS"],  # 不要用 "*"
+    allow_headers=[
+        "Authorization",
+        "Content-Type",
+        "Origin"
+    ],
+    expose_headers=["X-Custom-Header"],  # 前端需要读取的头部
+    max_age=600  # 预检请求缓存时间（Safari 需要较长）
 )
 
 # 将 api_routes 中定义的所有路由包含到主应用中
