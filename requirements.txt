@@ -11,7 +11,7 @@ passlib==1.7.4      # 密码哈希（通常与OAuth2PasswordBearer配合使用�
 
 # 数据库/数据处理
 sqlalchemy==2.0.41  # 如果使用SQL数据库
-pymupdf==1.23.25    # fitz (PyMuPDF)
+pymupdf
 
 # Llama Cloud 相关
 llama-cloud-services==0.6.35  # 根据实际版本调整
@@ -26,4 +26,5 @@ python-dotenv==1.1.0
 # 其他工具
 httpx==0.28.1       # 异步HTTP客户端
 orjson==3.10.18     # 更快的JSON处理（可选）
+
 
