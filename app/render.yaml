@@ -1,0 +1,23 @@
+
+services:
+  - type: web
+    name: grant-extractor-api  # 自定义服务名称
+    env: python
+    region: singapore  # 可选：选择离用户近的区域（如 tokyo, frankfurt）
+    plan: free         # 免费计划
+    
+    # 构建和启动命令
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+      
+    # 环境变量（敏感值通过Render后台设置）
+    envVars:
+      - key: LLAMA_CLOUD_API_KEY
+        sync: false    # 关键！表示值不会保存在文件中
+      - key: DATABASE_URL
+        sync: false    # 数据库连接串也需保密
+      
+    # 健康检查（确保服务存活）
+    healthCheckPath: /health
+    healthCheckTimeoutSeconds: 30
