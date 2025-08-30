@@ -21,7 +21,7 @@ app = FastAPI(title="Grant Application Extractor API")
 # 2. 定义允许的源
 origins = [
     "https://grant-extractor-frontend.onrender.com",
-    "http://localhost:58275", 
+    "http://localhost:62342", 
 ]
 
 app.add_middleware(
